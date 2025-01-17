@@ -1,5 +1,5 @@
 ---
-defaults: &defaults
+defaults:
   smtp:
     address: <%= ENV.fetch("SMTP_ADDRESS", "mail.yourdomain.edu") %>
     port: <%= ENV.fetch("SMTP_PORT", 465) %>
