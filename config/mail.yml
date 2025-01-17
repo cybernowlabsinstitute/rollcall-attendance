@@ -1,5 +1,5 @@
 ---
-defaults:
+production:
   smtp:
     address: <%= ENV.fetch("SMTP_ADDRESS", "mail.yourdomain.edu") %>
     port: <%= ENV.fetch("SMTP_PORT", 465) %>
@@ -11,15 +11,3 @@ defaults:
     openssl_verify_mode: <%= ENV.fetch("SMTP_SSL_VERIFY", "none") %>
   default_options:
     outgoing_address: <%= ENV.fetch("SMTP_FROM", "Canvas Rollcall <canvas@yourdomain.edu>") %>
-
-development:
-  <<: *defaults
-
-test: &test
-  <<: *defaults
-
-cucumber:
-  <<: *test
-
-production:
-  <<: *defaults
