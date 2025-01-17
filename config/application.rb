@@ -26,6 +26,10 @@ Bundler.require(*Rails.groups)
 
 module InstructureRollcall
   class Application < Rails::Application
+    config.before_configuration do
+      mail_config = YAML.load(ERB.new(File.read("#{Rails.root}/config/mail.yml.erb")).result)
+      config.action_mailer.smtp_settings = mail_config[Rails.env]['smtp']
+    end
     config.active_record.legacy_connection_handling = false
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
